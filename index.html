@@ -44,6 +44,32 @@
   .work-actions a.primary{background:var(--ac);color:#fff}
   .work-actions a.ghost{border:1px solid var(--line);color:var(--tx)}
 
+  .note-body{margin-top:16px;padding-top:18px;border-top:1px solid var(--line)}
+  .note-body h2{font-size:14.5px;color:var(--ac2);letter-spacing:.5px;margin:30px 0 10px;
+                padding-bottom:7px;border-bottom:1px solid var(--line)}
+  .note-body h3{font-size:13.5px;color:var(--tx);margin:22px 0 6px}
+  .note-body p,.note-body li{font-size:13.2px;line-height:1.85;color:var(--dim);margin:9px 0}
+  .note-body strong{color:var(--tx);font-weight:600}
+  .note-body code{background:#0f1620;border:1px solid var(--line);border-radius:5px;
+                  padding:1px 5px;font-size:12px;color:#9fd0ff;word-break:break-all}
+  .note-body pre.fml{background:#0f1620;border:1px solid var(--line);border-radius:10px;
+                     padding:11px 13px;overflow-x:auto;font-size:12.5px;color:#cfe3ff;
+                     line-height:1.7;white-space:pre-wrap;word-break:break-word}
+  .note-body table{width:100%;border-collapse:collapse;margin:12px 0;font-size:12px}
+  .note-body th,.note-body td{border:1px solid var(--line);padding:7px 9px;text-align:left;color:var(--dim)}
+  .note-body th{background:#0f1620;color:var(--tx);font-weight:600}
+  .note-body blockquote{margin:12px 0;padding:9px 13px;border-left:3px solid var(--ac);
+                        background:#0f1620;border-radius:0 10px 10px 0}
+  .note-body blockquote p{margin:0}
+  .note-body hr{border:0;border-top:1px solid var(--line);margin:24px 0}
+  details.note-details{margin-top:2px}
+  details.note-details>summary{display:block;text-align:center;padding:12px;border-radius:12px;
+      border:1px solid var(--line);color:var(--tx);font-size:14px;font-weight:600;
+      cursor:pointer;list-style:none;user-select:none}
+  details.note-details>summary::-webkit-details-marker{display:none}
+  details.note-details[open]>summary{background:var(--card);border-color:var(--ac)}
+  .work-note{font-size:11.5px;color:var(--dim);opacity:.72;margin-top:11px;line-height:1.75}
+
   .about{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
   .about b{color:var(--tx);font-weight:600}
 
@@ -121,6 +147,119 @@
     <a class="primary" href="https://www.mc-find.de5.net">开始找服</a>
     <a class="ghost" href="https://www.mc-find.de5.net#submit">提交服务器</a>
   </div>
+</div>
+
+<div class="work">
+  <div class="work-top">
+    <div class="work-ico emo">∑</div>
+    <div>
+      <div class="work-name">Erdős–Straus 猜想：复现笔记</div>
+      <div class="work-sub">数学笔记 · 2026 年 11 月 · 不是证明</div>
+    </div>
+  </div>
+  <div class="work-desc">花了一周，把这个 1948 年提出、至今没解决的猜想从头推了一遍：六条能逐行验算的构造公式，n ≤ 10⁷ 全部给出显式解，剩下的那类数老实写着「没解完」。文里有一节专门记录我两次推翻自己结论的地方。</div>
+  <div class="work-tags">
+    <span>复现</span><span>数值实验</span><span>仍未解决</span>
+  </div>
+  <div class="work-actions">
+    <details class="note-details">
+      <summary>读笔记（点开看全文）</summary>
+      <div class="note-body">
+<p><strong>作者</strong>：哈密瓜EMOJI（初一）× Hermes（AI） <strong>时间</strong>：2026 年 11 月 <strong>性质</strong>：复现经典构造 + 自推两条构造族 + 数值实验。<strong>本文不声称证明 Erdős–Straus 猜想。</strong></p>
+<hr>
+<h2>0. 一句话结论</h2>
+<p>我们把 Erdős–Straus 猜想从零推了一遍，得到六条可逐行验算的构造定理；对 n ≤ 10⁷ 的<strong>全部</strong> n 用这些定理 + 参数搜索给出了显式解，全部通过精确有理数验算。<strong>但这不是证明</strong>——最后一步（对任意 n 都存在这样的参数）与原猜想等价，仍未解决。</p>
+<hr>
+<h2>1. 问题</h2>
+<p><strong>Erdős–Straus 猜想</strong>（1948，Erdős 与 Straus 独立提出；文献中最早见于 Obláth 同年投稿的论文）：对每个整数 n ≥ 2，方程</p>
+<pre class="fml">(4)/(n)=(1)/(a)+(1)/(b)+(1)/(c)</pre>
+<p>有正整数解。</p>
+<p>已解决到 n ≤ 10¹⁸（Mihnea–Dumitru, 2025），整体仍未证明。</p>
+<hr>
+<h2>2. 文献对照（重要，先说清哪些是别人的）</h2>
+<table><thead><tr><th>本文的定理</th><th>文献中的对应</th></tr></thead><tbody><tr><td>定理 A（n+1 被 ≡3 mod 4 的素数整除则可解）</td><td><strong>Obláth, 1948/1950</strong> 已指出</td></tr><tr><td>定理 A 推论（“几乎所有 n”）</td><td>同上，由 Obláth 直接推出</td></tr><tr><td>剩余类的压缩</td><td><strong>Mordell, 1969</strong>（mod 840，仅剩 6 类）；<strong>Terzi, 1971</strong>（198 个坏同余类 mod 120120）</td></tr><tr><td>例外集上界</td><td><strong>Vaughan, 1970</strong>：≤ N·exp(−c(log N)^{2/3})；后续改进至 N·exp(−c(ln N)^{3/4})</td></tr><tr><td>穷举验证</td><td>Salez 2014（10¹⁷）、Mihnea–Dumitru 2025（10¹⁸）</td></tr><tr><td>解数渐近</td><td><strong>Elsholtz–Tao, 2013</strong></td></tr></tbody></table>
+<p><strong>定理 B、C、D、E、F 是本文在实验过程中独立推出来的</strong>，机理与上述“参数解（parametric solutions）”同源；作者未逐条核对文献是否已有完全相同的形式，若有重复，以文献为准。</p>
+<hr>
+<h2>3. 通用归约</h2>
+<p>取 k &gt; 0 与 a 满足 4a − n = k，即 a = (n+k)/4（要求 k ≡ −n (mod 4)）。则</p>
+<pre class="fml">\frac4n-\frac1a=(4a-n)/(na)=(k)/(na)</pre>
+<p>故原方程等价于 1/b + 1/c = k/(na)。记 v = na：</p>
+<pre class="fml">(kb-v)(kc-v)=v^2</pre>
+<p><strong>引理 1</strong>：若 d | v² 且 d + v ≡ 0 (mod k)，则 b = (d+v)/k、c = (v²/d+v)/k 为解。（d = v 时退化为 b = c = 2v/k。）</p>
+<hr>
+<h2>4. 六条构造定理</h2>
+<h3>定理 A（小因子归约）</h3>
+<p>若存在 k &gt; 0 满足 k ≡ −n (mod 4) 且 k | n，则</p>
+<pre class="fml">\frac4n=\frac1a+\frac1b+\frac1c,\quad a=(n+k)/(4), b=c=(2na)/(k)</pre>
+<p>*证明*：同余条件给 a ∈ ℤ⁺；k | n 给 k | na，故 b、c ∈ ℤ⁺。且</p>
+<pre class="fml">\frac1a+(k)/(na)=(n+k)/(na)=(4a)/(na)=\frac4n</pre>
+<p>∎</p>
+<p><strong>推论</strong>：n ≡ 3、2、0 (mod 4) 取 k = 1、2、4 即可；n ≡ 1 (mod 4) 且有素因子 p ≡ 3 (mod 4) 取 k = p 即可。故未覆盖的 n 只能满足：n 为奇数且所有素因子 ≡ 1 (mod 4)。</p>
+<h3>定理 B（n ≡ 5 mod 8）</h3>
+<p>此时 a = (n+3)/4 为偶数（因 n+3 ≡ 0 mod 8）。</p>
+<pre class="fml">\frac4n=\frac1a+(2)/(an)+(1)/(an),\quad a=(n+3)/(4)</pre>
+<p>*证明*：1/a + 3/(an) = (n+3)/(an) = 4a/(an) = 4/n，而 3/(an) = 2/(an) + 1/(an)。∎</p>
+<h3>定理 C（n ≡ 17 mod 24）</h3>
+<p>此时 a ≡ 2 (mod 3)，令 m = (a+1)/3。</p>
+<pre class="fml">\frac4n=\frac1a+\frac1{mn}+\frac1{amn}</pre>
+<p>*证明*：1/(mn) + 1/(amn) = (a+1)/(amn) = 3m/(amn) = 3/(an)，再用定理 B 用过的恒等式。∎</p>
+<h3>定理 D（素数 D ≡ 2 mod 3 族）</h3>
+<p>设 D 为素数、D ≡ 2 (mod 3)，n ≡ 1 (mod 12)（于是 a ≡ 1 (mod 3)）。若 D | n 或 D | (n+3)，取 m = (a+D)/3：</p>
+<pre class="fml">\frac4n=\frac1a+\frac1{mn}+\frac1{amn/D}</pre>
+<p>*证明*：a ≡ 1、D ≡ 2 (mod 3) ⟹ a + D ≡ 0 (mod 3)，m 为整数。D 奇素数且 D | (n+3) = 4a ⟹ D | a，故 D | amn，c 为整数。又 1/c = D/(amn)，于是</p>
+<pre class="fml">\frac1{mn}+\frac1c=(a+D)/(amn)=(3m)/(amn)=\frac3{an}</pre>
+<p>∎</p>
+<h3>定理 E（n+4 的双 3 mod 4 分解）</h3>
+<p>若 n + 4 = K·L，且 K ≡ L ≡ 3 (mod 4)，取</p>
+<pre class="fml">a=(n+K)/(4),\quad m=(L+1)/(4),\quad \frac4n=\frac1a+\frac1{mn}+\frac1{amn}</pre>
+<p>*证明*：KL ≡ 9 ≡ 1 (mod 4) ⟹ n ≡ 1 (mod 4)；n + K = KL − 4 + K = K(L+1) − 4 ⟹ n+K ≡ 0 (mod 4)，a 为整数。L ≡ 3 ⟹ m 为整数。且 a = Km − 1，故</p>
+<pre class="fml">\frac1{mn}+\frac1{amn}=(a+1)/(amn)=(K)/(an)</pre>
+<p>∎</p>
+<p><strong>例</strong>（n=73）：77 = 7 × 11，a = 20、m = 3，解答 (20, 219, 4380)：1/20 + 1/219 + 1/4380 = 4/73。</p>
+<h3>定理 F（E 的参数化推广）</h3>
+<p>设 n + 4j = k·L，k ≡ L ≡ 3 (mod 4)，m = (L+1)/4，a = (n+k)/4。若 <strong>j | a·m·n</strong>，则</p>
+<pre class="fml">\frac4n=\frac1a+\frac1{mn}+\frac1{amn/j}</pre>
+<p>*证明*：同上，a = km − j，故 1/(mn) + j/(amn) = (a+j)/(amn) = km/(amn) = k/(an)。∎</p>
+<blockquote>定理 B、C、D 都是 k = 3（a = (n+3)/4）时的不同拆法；定理 E 是 F 在 j = 1 时的特例。<strong>F 是本文给出的统一形式。</strong></blockquote>
+<hr>
+<h2>5. 机器验证</h2>
+<h3>5.1 精确有理数核对（独立于 C 程序）</h3>
+<p>用 Python <code>Fraction</code> 对 n = 2 … 3000 逐条代入六条定理，<strong>通过 3,886 条，失败 0 条</strong>。这一步不使用整数乘法，避免溢出掩盖错误。</p>
+<h3>5.2 分层覆盖（n ≤ 10⁶）</h3>
+<table><thead><tr><th>层</th><th>覆盖数</th><th>覆盖率</th></tr></thead><tbody><tr><td>定理 A</td><td>912,118</td><td>91.2119%</td></tr><tr><td>+ B</td><td>43,948</td><td>95.6067%</td></tr><tr><td>+ C</td><td>21,985</td><td>97.8052%</td></tr><tr><td>+ D</td><td>15,869</td><td>99.3921%</td></tr><tr><td>剩余</td><td>6,079</td><td>0.6079%</td></tr></tbody></table>
+<h3>5.3 分层覆盖（n ≤ 10⁷）</h3>
+<table><thead><tr><th>层</th><th>覆盖数</th><th>覆盖率</th></tr></thead><tbody><tr><td>定理 A</td><td>9,185,817</td><td>91.858%</td></tr><tr><td>+ B</td><td>407,122</td><td>95.929%</td></tr><tr><td>+ C</td><td>203,569</td><td>97.965%</td></tr><tr><td>+ D</td><td>151,513</td><td>99.4802%</td></tr><tr><td>剩余</td><td>51,978</td><td>0.5198%</td></tr></tbody></table>
+<h3>5.4 用 E、F 清空剩余（n ≤ 10⁷）</h3>
+<table><thead><tr><th>阶段</th><th>仍未覆盖</th></tr></thead><tbody><tr><td>D 之后</td><td>51,978</td></tr><tr><td>+ 定理 E（j=1）</td><td>24,033</td></tr><tr><td>+ 定理 F（j,k ≤ 400）</td><td>318</td></tr><tr><td>+ 扩大参数（j ≤ 2×10⁵, k ≤ 4000）</td><td><strong>0</strong></td></tr></tbody></table>
+<p>最后 318 个最顽固的样本：1201、2521、3721（=61²）、9409（=97²）、32761（=181²）、37249（=193²）等，最大用到 j = 128,567。</p>
+<p><strong>结论：n ≤ 10⁷ 全部有显式解，全部验算通过，失败 0 例。但这只等于“验证”，不等于“证明”。</strong></p>
+<hr>
+<h2>6. 剩余集的精确刻画与密度</h2>
+<h3>6.1 A–C 之后的剩余（精确分解，n ≤ 10⁸）</h3>
+<pre class="fml">n≡1 (mod 24),\quad所有素因子≡1 (mod 4),\quad n+3 不含≡2 (mod 3) 的素因子</pre>
+<p>前几项：73、169、193、241、313、409、433、601、673、769、793……</p>
+<h3>6.2 密度规律</h3>
+<table><thead><tr><th>区间</th><th>剩余个数</th><th>区间密度</th></tr></thead><tbody><tr><td>(10⁶, 10⁷]</td><td>181,543</td><td>2.017%</td></tr><tr><td>(10⁷, 10⁸]</td><td>1,701,059</td><td>1.890%</td></tr></tbody></table>
+<p>密度比 0.9370，与 1/√(ln n) 的预测 0.9332 吻合（1/ln n 预测 0.8708，明显不符）。即</p>
+<pre class="fml">密度\approx\frac{0.08}{√(ln n)}</pre>
+<p>这与 Landau–Ramanujan 定理（全素因子 ≡1 mod 4 的数计数 ~ C/√(ln x)）一致：剩余集落在这个族中，继承其衰减速度。</p>
+<hr>
+<h2>7. 两次自查纠错（必须写进来）</h2>
+<ol><li><strong>第一版“87% 覆盖”是假数据</strong>：k ≡ −n (mod 4) 写成 k ≡ n (mod 4)，导致 a 大面积非整数；另有一次 int64 溢出制造了 5 万条假“验算失败”。</li><li><strong>“剩余密度 ≈ 8.4/ln n”是错的</strong>：用了累计密度，且筛法漏掉大于 √N 的素因子；SPF 精确重算后正确形式为 0.08/√(ln n)。</li></ol>
+<p>这两次都是程序自查发现的，不是别人指出来的。</p>
+<hr>
+<h2>8. 结论</h2>
+<ol><li><strong>猜想没有被证明。</strong> 定理 F 要求存在 (j, k)，而“对任意 n 都存在这样的 (j,k)”与原猜想一样难；j 随 n 增大（10⁷ 内最大到 128,567），说明这条路线只能逼近。</li><li>本文的实质产出：六条可验算的构造定理、统一参数化形式（定理 F）、10⁷ 内完整验证、剩余集刻画与密度规律。</li><li>与文献相比：定理 A（及“几乎所有 n”）属于 Obláth 1948 的已有结果；Mordell、Terzi、Vaughan 走得更远；我们的数值范围（10⁷）远小于 Salez（10¹⁷）。</li><li>一句话：<strong>能复现、能验证、能纠错；不能无中生有。</strong></li></ol>
+<hr>
+<h2>9. 复现</h2>
+<table><thead><tr><th>文件</th><th>作用</th></tr></thead><tbody><tr><td><code>verify_theorems.py</code></td><td>六条定理的精确有理数核对（Fraction，无溢出风险）</td></tr><tr><td><code>es_factor.c</code></td><td>引理 1 的因子枚举，n ≤ 2×10⁵ 全域求解</td></tr><tr><td><code>d3_theorem.c</code></td><td>定理 A 与剩余集刻画（10⁶）</td></tr><tr><td><code>d4b.c</code> / <code>d4c.c</code></td><td>定理 B / C 验证</td></tr><tr><td><code>d5.c</code></td><td>定理 D 族与联合覆盖</td></tr><tr><td><code>d6.c</code></td><td>10⁷ 分层覆盖统计</td></tr><tr><td><code>d7b.c</code></td><td>SPF 精确分解与密度规律（10⁸）</td></tr><tr><td><code>d8.c</code> / <code>d9.c</code> / <code>d9b.c</code></td><td>定理 E、F 与参数清空</td></tr></tbody></table>
+<p>编译 <code>gcc -O2 -o x x.c</code>（用 <code>__int128</code>，需 GCC/Clang）；全部程序合计运行 &lt; 10 秒。</p>
+<hr>
+<p>*七天，六条定理，两次自我推翻，零次数据造假。留档于此。*</p>
+      </div>
+    </details>
+  </div>
+  <div class="work-note">文中全部计算与验算由 DeepSeek-V4.1-1017 完成；定理 A 的原始出处是 Obláth 1948，已在文中标注。</div>
 </div>
 
 <h2>关于我</h2>
